@@ -81,6 +81,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\auth\controller.login.js" />
+    <Content Include="app\auth\controller.signup.js" />
+    <Content Include="app\auth\service.auth.js" />
+    <Content Include="app\auth\view.login.html" />
+    <Content Include="app\auth\view.signup.html" />
+    <Content Include="app\home\controller.home.js" />
+    <Content Include="app\home\view.home.html" />
+    <Content Include="app\productdetail\controller.productdetail.js" />
+    <Content Include="app\productdetail\view.productdetail.html" />
+    <Content Include="app\products\controller.products.js" />
+    <Content Include="app\products\service.products.js" />
+    <Content Include="app\products\view.products.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-animate.js" />
@@ -862,6 +875,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -888,7 +902,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="vendors\animation\" />
+    <Folder Include="vendors\fractionslider\" />
+    <Folder Include="vendors\FullscreenSlitSlider\" />
+    <Folder Include="vendors\jquery.mobilemenu\" />
+    <Folder Include="vendors\nivo-slider3.2\" />
+    <Folder Include="vendors\prettyPhoto\" />
+    <Folder Include="vendors\rs-plugin\" />
+    <Folder Include="vendors\selectivizr\" />
+    <Folder Include="vendors\sequencejs\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

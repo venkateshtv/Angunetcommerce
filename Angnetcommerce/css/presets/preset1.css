@@ -182,8 +182,8 @@ background: #07ad87 url(../../images/bg.png)repeat;
 }
 
 /*Preset Images*/
-a.logo{background:url("../../images/presets/preset1/logo.png") no-repeat 50%; width: 167px;height: 67px}
-.fotter-logo{background:url("../../images/presets/preset1/logo_footer.png") no-repeat 50%; width: 167px;height: 67px}
+a.logo{background:url("../../images/presets/preset1/logo.png") no-repeat 50%; width: 240px;height: 67px}
+.fotter-logo{background:url("../../images/presets/preset1/logo_footer.png") no-repeat 50%; width: 240px;height: 67px}
 .icon-top-icon1{background: url("../../images/presets/preset1/whatwecanicon1.png")no-repeat 50%}
 .icon-top-icon2{background: url("../../images/presets/preset1/whatwecanicon2.png")no-repeat 50%}
 .icon-top-icon3{background: url("../../images/presets/preset1/whatwecanicon3.png")no-repeat 50%}
