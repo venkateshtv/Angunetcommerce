@@ -7,7 +7,7 @@
 <![endif]-->
 <!--[if gt IE 9]>
 <!-->
-<html>
+<html  ng-app="angnetcommerceapp">
 <!--
 <![endif]-->
 <head>
@@ -75,8 +75,16 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <!-- End of fav and touch icons -->
+
+    <!--Page View Css Load for Individual page-->
+    <!--prettyPhoto-->
+    <link href="vendors/prettyPhoto/prettyPhoto.css" rel="stylesheet" media="screen">
+    <link href="css/pageviews/portfolio-details.css" rel="stylesheet" media="screen">
+    <!--Carosuel Slider-->
+    <link rel="stylesheet" type="text/css" href="css/pageviews/carousel-slider.css">
+    <!--End of Page View Css Load for Individual page-->
 </head>
-<body  ng-app="angnetcommerceapp">
+<body>
 <!--header-top-->
 <div class="header-top clearfix">
     <div class="container">
@@ -205,7 +213,7 @@
 - THEMEPUNCH BANNER -
 #################################
 -->
-<div class="fullwidthbanner-container">
+<div id="banner" class="fullwidthbanner-container">
     <div id="rev-slider" class="fullwidthbanner">
         <ul>
             <!-- THE FIRST SLIDE -->
@@ -461,6 +469,11 @@
 <script type="text/javascript" src="js/jquery.prettyPhoto.js">
 </script>
 <!--End of Page wise js load for individual page only-->
+    <!--Page wise js load for individual page only-->
+    <script type="text/javascript" src="js/pageview/prettyphoto.js"></script>
+    <script type="text/javascript" src="js/pageview/carosuelautoplay.js">
+    </script>
+    <!--End of Page wise js load for individual page only-->
 <!--Google Analytic Code remember to re-configure according to your need-->
 <!-- Google Analytics: Change UA-XXXXX-X to be your google analytic ID. For more information go to http://www.google.com/analytics/ . After all this remove comment to enable script tag.
 <script>

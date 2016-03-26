@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AaauctionModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="addresses">
+          <Key>
+            <PropertyRef Name="addressid" />
+          </Key>
+          <Property Name="addressid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerid" Type="int" Nullable="false" />
+          <Property Name="address_line_1" Type="varchar" MaxLength="50" />
+          <Property Name="address_line_2" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="30" />
+          <Property Name="state" Type="varchar" MaxLength="30" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="zip_code" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Name="customerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mobile" Type="int" />
+          <Property Name="phone" Type="int" />
+        </EntityType>
+        <EntityType Name="features_on_vehicles_for_sale">
+          <Key>
+            <PropertyRef Name="stock_no" />
+            <PropertyRef Name="featureid" />
+          </Key>
+          <Property Name="stock_no" Type="int" Nullable="false" />
+          <Property Name="featureid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="make">
+          <Key>
+            <PropertyRef Name="makeid" />
+          </Key>
+          <Property Name="makeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="make_name" Type="varchar" MaxLength="30" />
+          <Property Name="description" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="model">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="model_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="make_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_category">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_features">
+          <Key>
+            <PropertyRef Name="featureid" />
+          </Key>
+          <Property Name="featureid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="feature_name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_for_sale">
+          <Key>
+            <PropertyRef Name="stock_no" />
+          </Key>
+          <Property Name="stock_no" Type="int" Nullable="false" />
+          <Property Name="model_id" Type="int" Nullable="false" />
+          <Property Name="vehicle_category_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="year" Type="int" />
+          <Property Name="month" Type="varchar" MaxLength="15" />
+          <Property Name="chassis_no_1" Type="varchar" MaxLength="25" />
+          <Property Name="chassis_no_2" Type="varchar" MaxLength="25" />
+          <Property Name="grade" Type="varchar" MaxLength="25" />
+          <Property Name="ETD" Type="varchar" MaxLength="25" />
+          <Property Name="color" Type="varchar" MaxLength="10" />
+          <Property Name="KM_ran" Type="int" />
+          <Property Name="uel" Type="varchar" MaxLength="15" />
+          <Property Name="gear_at" Type="bool" />
+          <Property Name="CC" Type="int" />
+          <Property Name="no_of_doors" Type="int" />
+          <Property Name="last_modified_date" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="vehicle_order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stock_no" Type="int" Nullable="false" />
+          <Property Name="customerid" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Precision="0" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ispaid" Type="bool" />
+          <Property Name="payment_details" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="AaauctionModelStoreContainer">
+          <EntitySet Name="addresses" EntityType="Self.addresses" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="features_on_vehicles_for_sale" EntityType="Self.features_on_vehicles_for_sale" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="make" EntityType="Self.make" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="model" EntityType="Self.model" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="vehicle_category" EntityType="Self.vehicle_category" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="vehicle_features" EntityType="Self.vehicle_features" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="vehicle_for_sale" EntityType="Self.vehicle_for_sale" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="vehicle_order" EntityType="Self.vehicle_order" Schema="aaauction" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AaauctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="addressid" />
+          </Key>
+          <Property Name="addressid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerid" Type="Int32" Nullable="false" />
+          <Property Name="address_line_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_line_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="zip_code" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Name="customerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mobile" Type="Int32" />
+          <Property Name="phone" Type="Int32" />
+        </EntityType>
+        <EntityType Name="features_on_vehicles_for_sale">
+          <Key>
+            <PropertyRef Name="stock_no" />
+            <PropertyRef Name="featureid" />
+          </Key>
+          <Property Name="stock_no" Type="Int32" Nullable="false" />
+          <Property Name="featureid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="make">
+          <Key>
+            <PropertyRef Name="makeid" />
+          </Key>
+          <Property Name="makeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="make_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="model">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="model_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="make_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_category">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_features">
+          <Key>
+            <PropertyRef Name="featureid" />
+          </Key>
+          <Property Name="featureid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="feature_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_for_sale">
+          <Key>
+            <PropertyRef Name="stock_no" />
+          </Key>
+          <Property Name="stock_no" Type="Int32" Nullable="false" />
+          <Property Name="model_id" Type="Int32" Nullable="false" />
+          <Property Name="vehicle_category_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="month" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="chassis_no_1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="chassis_no_2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ETD" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="KM_ran" Type="Int32" />
+          <Property Name="uel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="gear_at" Type="Boolean" />
+          <Property Name="CC" Type="Int32" />
+          <Property Name="no_of_doors" Type="Int32" />
+          <Property Name="last_modified_date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="vehicle_order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stock_no" Type="Int32" Nullable="false" />
+          <Property Name="customerid" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" />
+          <Property Name="price" Type="Decimal" />
+          <Property Name="ispaid" Type="Boolean" />
+          <Property Name="payment_details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AaauctionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Self.address" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="features_on_vehicles_for_sale" EntityType="Self.features_on_vehicles_for_sale" />
+          <EntitySet Name="makes" EntityType="Self.make" />
+          <EntitySet Name="models" EntityType="Self.model" />
+          <EntitySet Name="vehicle_category" EntityType="Self.vehicle_category" />
+          <EntitySet Name="vehicle_features" EntityType="Self.vehicle_features" />
+          <EntitySet Name="vehicle_for_sale" EntityType="Self.vehicle_for_sale" />
+          <EntitySet Name="vehicle_order" EntityType="Self.vehicle_order" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AaauctionModelStoreContainer" CdmEntityContainer="AaauctionEntities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="AaauctionModel.address">
+              <MappingFragment StoreEntitySet="addresses">
+                <ScalarProperty Name="addressid" ColumnName="addressid" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="address_line_1" ColumnName="address_line_1" />
+                <ScalarProperty Name="address_line_2" ColumnName="address_line_2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="AaauctionModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="features_on_vehicles_for_sale">
+            <EntityTypeMapping TypeName="AaauctionModel.features_on_vehicles_for_sale">
+              <MappingFragment StoreEntitySet="features_on_vehicles_for_sale">
+                <ScalarProperty Name="stock_no" ColumnName="stock_no" />
+                <ScalarProperty Name="featureid" ColumnName="featureid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="makes">
+            <EntityTypeMapping TypeName="AaauctionModel.make">
+              <MappingFragment StoreEntitySet="make">
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+                <ScalarProperty Name="make_name" ColumnName="make_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="models">
+            <EntityTypeMapping TypeName="AaauctionModel.model">
+              <MappingFragment StoreEntitySet="model">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="model_name" ColumnName="model_name" />
+                <ScalarProperty Name="make_id" ColumnName="make_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_category">
+            <EntityTypeMapping TypeName="AaauctionModel.vehicle_category">
+              <MappingFragment StoreEntitySet="vehicle_category">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_features">
+            <EntityTypeMapping TypeName="AaauctionModel.vehicle_features">
+              <MappingFragment StoreEntitySet="vehicle_features">
+                <ScalarProperty Name="featureid" ColumnName="featureid" />
+                <ScalarProperty Name="feature_name" ColumnName="feature_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_for_sale">
+            <EntityTypeMapping TypeName="AaauctionModel.vehicle_for_sale">
+              <MappingFragment StoreEntitySet="vehicle_for_sale">
+                <ScalarProperty Name="stock_no" ColumnName="stock_no" />
+                <ScalarProperty Name="model_id" ColumnName="model_id" />
+                <ScalarProperty Name="vehicle_category_id" ColumnName="vehicle_category_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="chassis_no_1" ColumnName="chassis_no_1" />
+                <ScalarProperty Name="chassis_no_2" ColumnName="chassis_no_2" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="ETD" ColumnName="ETD" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="KM_ran" ColumnName="KM_ran" />
+                <ScalarProperty Name="uel" ColumnName="uel" />
+                <ScalarProperty Name="gear_at" ColumnName="gear_at" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="no_of_doors" ColumnName="no_of_doors" />
+                <ScalarProperty Name="last_modified_date" ColumnName="last_modified_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_order">
+            <EntityTypeMapping TypeName="AaauctionModel.vehicle_order">
+              <MappingFragment StoreEntitySet="vehicle_order">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="stock_no" ColumnName="stock_no" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ispaid" ColumnName="ispaid" />
+                <ScalarProperty Name="payment_details" ColumnName="payment_details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

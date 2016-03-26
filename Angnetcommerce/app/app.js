@@ -13,13 +13,28 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         controller:'ProductsCtrl'
     })
     .state('productdetail', {
-        url: '/productdetail',
+        url: '/productdetail/:Stock_No',
         templateUrl: 'app/productdetail/view.productdetail.html',
-        controller:'ProductDetailCtrl'
+        controller: 'ProductDetailCtrl',
+        cache:false
     });
 
     $urlRouterProvider.otherwise('/home');
-    
+   
 
 
+});
+
+
+app.run(function ($rootScope) {
+    // you can inject any instance here
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        // do something
+        if (toState.name == "home") {
+            $('#banner').show();
+        }
+        else {
+            $('#banner').hide();
+        }
+    });
 });

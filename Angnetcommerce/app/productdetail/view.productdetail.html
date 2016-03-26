@@ -1,1 +1,265 @@
-﻿
+﻿<!--<section id="breadcumb" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center clearfix">
+                <h6 class="breadcumb-title">Car details</h6>
+            </div>
+        </div>
+    </div>
+</section>-->
+<!-- /This is page title -->
+<!-- /Body Sections -->
+<section id="portfolio-details" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="project-head-title">
+                    <h4>
+                        <span class="preset-color">
+                            {{product.Name}}
+                        </span>
+
+                    </h4>
+                    <div class="portfolio-info">
+                        <div class="row">
+                            <div class="col-md-12 center">
+                                <ul>
+                                    <!--<li>
+                                        <a href="#" rel="tooltip" data-original-title="Like"><i class="fa fa-heart"></i>14</a>
+                                    </li>-->
+                                    <li>
+                                        <i class="fa fa-calendar"></i> {{product.Year}} {{product.Month}}
+                                    </li>
+                                    <!--<li>
+                                        <i class="fa fa-tags"></i><a href="#">Brand</a>, <a href="#">Design</a>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>
+                                Stock No
+                            </th>
+                            <td>
+                                {{product.Stock_No}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Make
+                            </th>
+                            <td>
+                                {{product.Maker}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Year/Month
+                            </th>
+                            <td>
+                                {{product.Year}} {{product.Month}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Mileage
+                            </th>
+                            <td>
+                                {{product.KM_ran}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Transmission
+                            </th>
+                            <td>
+                                {{product.Gear_m_at}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Fuel
+                            </th>
+                            <td>
+                                {{product.Fuel}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Grade
+                            </th>
+                            <td>
+                                {{product.Grade}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Color
+                            </th>
+                            <td>
+                                {{product.Color}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Engine
+                            </th>
+                            <td>
+                                {{product.CC}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Type
+                            </th>
+                            <td>
+                                {{product.Type}}
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators portfolio-carosel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
+                        </li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1">
+                        </li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2">
+                        </li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3">
+                        </li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner portfolio-carosel-inner">
+                        <div class="item active">
+                            <div class="project-image">
+                                <img src="images/portfolio/portfoplio-project1.jpg" class="img-responsive" alt="clients">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-image">
+                                <img src="images/portfolio/portfoplio-project2.jpg" class="img-responsive" alt="clients">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-image">
+                                <img src="images/portfolio/portfoplio-project3.jpg" class="img-responsive" alt="clients">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-image">
+                                <img src="images/portfolio/portfoplio-project4.jpg" class="img-responsive" alt="clients">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+               {{product.Currency}} {{product.Price}}
+                <a href="#" class="btn btn-primary btn-live"><i class="fa fa-external-link"></i>Buy Now</a><span class="arrow hlb" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#portfolio-details-->
+<!-- Recent work -->
+<section class="recent-work-head">
+    <div class="container">
+        <div class="row">
+            <h1>
+                Similar cars <span>
+                    
+                </span>
+            </h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="recent-work-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
+                <div class="recent-work-item">
+                    <img src="images/rw1.png" class="img-responsive work-item" alt="Responsive image">
+                    <div class="recent-work-item-hover">
+                        <div class="recent-work-project-title">
+                            <h1>
+                                Project title
+                            </h1>
+                            <button class="btn btn-default">
+                                Web design
+                            </button>
+                        </div>
+                    </div>
+                    <div class="recent-work-item-hover-btn">
+                        <a href="#">
+                            <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
+                        </a>
+                        <a href="images/rw1.png" rel="prettyPhoto[gal4]">
+                            <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
+                <div class="recent-work-item">
+                    <img src="images/rw2.png" class="img-responsive work-item" alt="Responsive image">
+                    <div class="recent-work-item-hover">
+                        <div class="recent-work-project-title">
+                            <h1>
+                                Project title
+                            </h1>
+                            <button class="btn btn-default">
+                                Web design
+                            </button>
+                        </div>
+                    </div>
+                    <div class="recent-work-item-hover-btn">
+                        <a href="#">
+                            <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
+                        </a>
+                        <a href="images/rw2.png" rel="prettyPhoto[gal4]">
+                            <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
+                <div class="recent-work-item">
+                    <img src="images/rw3.png" class="img-responsive work-item" alt="Responsive image">
+                    <div class="recent-work-item-hover">
+                        <div class="recent-work-project-title">
+                            <h1>
+                                Project title
+                            </h1>
+                            <button class="btn btn-default">
+                                Web design
+                            </button>
+                        </div>
+                    </div>
+                    <div class="recent-work-item-hover-btn">
+                        <a href="#">
+                            <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
+                        </a>
+                        <a href="images/rw3.png" rel="prettyPhoto[gal4]">
+                            <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

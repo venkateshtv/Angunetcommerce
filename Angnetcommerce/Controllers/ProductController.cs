@@ -12,9 +12,9 @@ namespace Angnetcommerce.Controllers
     {
         Product[] products = new Product[]
        {
-            new Product { Name = "Honda City", Price = 250000 },
-            new Product {Name = "Renault Scala", Price = 250000 },
-            new Product {Name = "Mercedes Benz",Price = 250000}
+            new Product { Stock_No = 1, Model = "Honda City",Currency ="USD", Price = 250000, Year=2014, Month="Jan", CC= 1500, Color="White", Maker="Honda", Fuel="Petrol", KM_ran=27000, Gear_m_at="A/T", Grade="SE Saloon", Type="Sedan" },
+            new Product {Stock_No =2 , Model = "Renault Scala", Currency ="USD",Price = 250000 , Year=2013, Month="Dec"},
+            new Product {Stock_No = 3, Model = "Mercedes Benz", Currency ="USD",Price = 250000 , Year=2015, Month="Feb"}
        };
 
         [HttpGet]
@@ -22,6 +22,10 @@ namespace Angnetcommerce.Controllers
         {
             return products;
         }
+        // Product Filters
+
+        //Get products Apply Filters
+
 
     }
 }
