@@ -26,10 +26,10 @@ namespace Angnetcommerce
         public string ETD { get; set; }
         public string color { get; set; }
         public Nullable<int> KM_ran { get; set; }
-        public string uel { get; set; }
         public Nullable<bool> gear_at { get; set; }
         public Nullable<int> CC { get; set; }
         public Nullable<int> no_of_doors { get; set; }
         public Nullable<System.DateTime> last_modified_date { get; set; }
+        public string fuel { get; set; }
     }
 }

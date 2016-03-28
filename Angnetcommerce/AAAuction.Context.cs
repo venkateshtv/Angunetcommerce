@@ -34,5 +34,6 @@ namespace Angnetcommerce
         public DbSet<vehicle_features> vehicle_features { get; set; }
         public DbSet<vehicle_for_sale> vehicle_for_sale { get; set; }
         public DbSet<vehicle_order> vehicle_order { get; set; }
+        public DbSet<images_on_vehicles_for_sale> images_on_vehicles_for_sale { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7ac70c5f6b9945bd9f472fe441f3b13a" Name="Diagram1">
+      <Diagram DiagramId="7ac70c5f6b9945bd9f472fe441f3b13a" Name="Diagram1" ZoomLevel="90">
         <EntityTypeShape EntityType="AaauctionModel.address" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AaauctionModel.customer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AaauctionModel.features_on_vehicles_for_sale" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="AaauctionModel.vehicle_features" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AaauctionModel.vehicle_for_sale" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AaauctionModel.vehicle_order" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AaauctionModel.images_on_vehicles_for_sale" Width="1.5" PointX="5.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,4 +1,8 @@
 ﻿<section id="carsgrid" class="clearfix">
+    <input type="file" id="file1" name="file" multiple
+           ng-files="getTheFiles($files)" />
+    <input type="button" ng-click="uploadFiles()" value="Upload" />
+
     <div ng-repeat="product in products" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gap-btm">
         <div  class="thumbnail">
             <div class="blog-image">

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AaauctionModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AaauctionModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="addresses">
           <Key>
             <PropertyRef Name="addressid" />
@@ -36,6 +36,14 @@
           </Key>
           <Property Name="stock_no" Type="int" Nullable="false" />
           <Property Name="featureid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="images_on_vehicles_for_sale">
+          <Key>
+            <PropertyRef Name="imageid" />
+          </Key>
+          <Property Name="imageid" Type="int" Nullable="false" />
+          <Property Name="imageurl" Type="varchar" MaxLength="150" />
+          <Property Name="stock_no" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="make">
           <Key>
@@ -81,9 +89,9 @@
           <Property Name="chassis_no_2" Type="varchar" MaxLength="25" />
           <Property Name="grade" Type="varchar" MaxLength="25" />
           <Property Name="ETD" Type="varchar" MaxLength="25" />
-          <Property Name="color" Type="varchar" MaxLength="10" />
+          <Property Name="color" Type="varchar" MaxLength="30" />
           <Property Name="KM_ran" Type="int" />
-          <Property Name="uel" Type="varchar" MaxLength="15" />
+          <Property Name="fuel" Type="varchar" MaxLength="30" />
           <Property Name="gear_at" Type="bool" />
           <Property Name="CC" Type="int" />
           <Property Name="no_of_doors" Type="int" />
@@ -105,6 +113,7 @@
           <EntitySet Name="addresses" EntityType="Self.addresses" Schema="aaauction" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="aaauction" store:Type="Tables" />
           <EntitySet Name="features_on_vehicles_for_sale" EntityType="Self.features_on_vehicles_for_sale" Schema="aaauction" store:Type="Tables" />
+          <EntitySet Name="images_on_vehicles_for_sale" EntityType="Self.images_on_vehicles_for_sale" Schema="aaauction" store:Type="Tables" />
           <EntitySet Name="make" EntityType="Self.make" Schema="aaauction" store:Type="Tables" />
           <EntitySet Name="model" EntityType="Self.model" Schema="aaauction" store:Type="Tables" />
           <EntitySet Name="vehicle_category" EntityType="Self.vehicle_category" Schema="aaauction" store:Type="Tables" />
@@ -112,8 +121,7 @@
           <EntitySet Name="vehicle_for_sale" EntityType="Self.vehicle_for_sale" Schema="aaauction" store:Type="Tables" />
           <EntitySet Name="vehicle_order" EntityType="Self.vehicle_order" Schema="aaauction" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AaauctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -195,11 +203,11 @@
           <Property Name="ETD" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="color" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="KM_ran" Type="Int32" />
-          <Property Name="uel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="gear_at" Type="Boolean" />
           <Property Name="CC" Type="Int32" />
           <Property Name="no_of_doors" Type="Int32" />
           <Property Name="last_modified_date" Type="DateTime" />
+          <Property Name="fuel" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vehicle_order">
           <Key>
@@ -223,7 +231,16 @@
           <EntitySet Name="vehicle_features" EntityType="Self.vehicle_features" />
           <EntitySet Name="vehicle_for_sale" EntityType="Self.vehicle_for_sale" />
           <EntitySet Name="vehicle_order" EntityType="Self.vehicle_order" />
+          <EntitySet Name="images_on_vehicles_for_sale" EntityType="AaauctionModel.images_on_vehicles_for_sale" />
         </EntityContainer>
+        <EntityType Name="images_on_vehicles_for_sale">
+          <Key>
+            <PropertyRef Name="imageid" />
+          </Key>
+          <Property Name="imageid" Type="Int32" Nullable="false" />
+          <Property Name="imageurl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="stock_no" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -301,6 +318,7 @@
           <EntitySetMapping Name="vehicle_for_sale">
             <EntityTypeMapping TypeName="AaauctionModel.vehicle_for_sale">
               <MappingFragment StoreEntitySet="vehicle_for_sale">
+                <ScalarProperty Name="fuel" ColumnName="fuel" />
                 <ScalarProperty Name="stock_no" ColumnName="stock_no" />
                 <ScalarProperty Name="model_id" ColumnName="model_id" />
                 <ScalarProperty Name="vehicle_category_id" ColumnName="vehicle_category_id" />
@@ -313,7 +331,6 @@
                 <ScalarProperty Name="ETD" ColumnName="ETD" />
                 <ScalarProperty Name="color" ColumnName="color" />
                 <ScalarProperty Name="KM_ran" ColumnName="KM_ran" />
-                <ScalarProperty Name="uel" ColumnName="uel" />
                 <ScalarProperty Name="gear_at" ColumnName="gear_at" />
                 <ScalarProperty Name="CC" ColumnName="CC" />
                 <ScalarProperty Name="no_of_doors" ColumnName="no_of_doors" />
@@ -331,6 +348,15 @@
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="ispaid" ColumnName="ispaid" />
                 <ScalarProperty Name="payment_details" ColumnName="payment_details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images_on_vehicles_for_sale">
+            <EntityTypeMapping TypeName="AaauctionModel.images_on_vehicles_for_sale">
+              <MappingFragment StoreEntitySet="images_on_vehicles_for_sale">
+                <ScalarProperty Name="stock_no" ColumnName="stock_no" />
+                <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+                <ScalarProperty Name="imageid" ColumnName="imageid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
