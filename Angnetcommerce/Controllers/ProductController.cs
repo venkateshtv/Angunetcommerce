@@ -21,6 +21,52 @@ namespace Angnetcommerce.Controllers
         [HttpGet]
         public Product[] GetProducts()
         {
+            AaauctionEntities db = new AaauctionEntities();
+            var q = (from product in db.vehicle_for_sale
+                     where product.is_sold == false
+                     join img in db.images_on_vehicles_for_sale
+                     on product.stock_no equals img.stock_no
+                     into imgJoin
+                     from im in imgJoin.DefaultIfEmpty()
+                     join feature in db.features_on_vehicles_for_sale
+                     on product.stock_no equals feature.stock_no
+                     into featJoin
+                     
+                     from fj in featJoin.DefaultIfEmpty()
+                     group new { product, im,fj} by product.stock_no into grp
+                     select new
+                     {
+                        product = grp.FirstOrDefault().product,
+                        images = grp.Where(y=>y.im != null).Select(x=>x.im.imageurl).ToList(),
+                        features = grp.Where(x=>x.fj != null).Select(y=>y.fj.featureid).ToList()
+                     }).ToList();
+
+            var query = (from product in db.vehicle_for_sale
+                        where product.is_sold == false
+                        join mod in db.models on product.model_id equals mod.id
+                        join mk in db.makes on mod.make_id equals mk.makeid
+                        //join img in db.images_on_vehicles_for_sale on product.stock_no equals img.stock_no into images
+                        //from img in images.DefaultIfEmpty()
+                        //join feature in db.features_on_vehicles_for_sale on product.stock_no equals feature.stock_no
+                        //join actualfeature in db.vehicle_features on feature.featureid equals actualfeature.featureid
+
+                        select new Product
+                        {
+
+                            Stock_No = product.stock_no,
+                            CC = product.CC,
+                            chassis_no_1 = product.chassis_no_1,
+                            
+                            //Images = db.images_on_vehicles_for_sale.Where(x=>x.stock_no == product.stock_no).Select(img => img.imageurl).ToArray()
+                            //Images = images.Select(x => x.imageurl).ToArray()
+
+
+                        }).ToList();
+            foreach (var product in query)
+            {
+
+            }
+            ////Images = db.images_on_vehicles_for_sale.Where(x=>x.stock_no == product.stock_no).Select(y=>y.imageurl).ToArray()
             return products;
         }
         // Product Filters
@@ -56,7 +102,7 @@ namespace Angnetcommerce.Controllers
                 var producsTobeImported = ImportProducts(file.LocalFileName);
                 SaveProducs(producsTobeImported);
             }
-            return "";
+            return "products saved";
         }
         private static void AddFeature(AaauctionEntities db, string featureName,int stock_no)
         {
@@ -113,6 +159,7 @@ namespace Angnetcommerce.Controllers
                     if(stock_no == 0)
                     {
                         var addProduct = new vehicle_for_sale();
+                        addProduct.is_sold = false;
                         addProduct.model_id = modelId;
                         addProduct.vehicle_category_id = categoryId;
                         addProduct.CC = product.CC;

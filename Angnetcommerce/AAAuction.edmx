@@ -96,6 +96,8 @@
           <Property Name="CC" Type="int" />
           <Property Name="no_of_doors" Type="int" />
           <Property Name="last_modified_date" Type="datetime" Precision="0" />
+          <Property Name="vehicle_color" Type="varchar" MaxLength="45" />
+          <Property Name="is_sold" Type="bool" />
         </EntityType>
         <EntityType Name="vehicle_order">
           <Key>
@@ -201,13 +203,15 @@
           <Property Name="chassis_no_2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="grade" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="ETD" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="color" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="KM_ran" Type="Int32" />
           <Property Name="gear_at" Type="Boolean" />
           <Property Name="CC" Type="Int32" />
           <Property Name="no_of_doors" Type="Int32" />
           <Property Name="last_modified_date" Type="DateTime" />
           <Property Name="fuel" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vehicle_color" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" Nullable="false" />
+          <Property Name="is_sold" Type="Boolean" />
         </EntityType>
         <EntityType Name="vehicle_order">
           <Key>
@@ -318,6 +322,9 @@
           <EntitySetMapping Name="vehicle_for_sale">
             <EntityTypeMapping TypeName="AaauctionModel.vehicle_for_sale">
               <MappingFragment StoreEntitySet="vehicle_for_sale">
+                <ScalarProperty Name="is_sold" ColumnName="is_sold" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="vehicle_color" ColumnName="vehicle_color" />
                 <ScalarProperty Name="fuel" ColumnName="fuel" />
                 <ScalarProperty Name="stock_no" ColumnName="stock_no" />
                 <ScalarProperty Name="model_id" ColumnName="model_id" />
@@ -329,7 +336,6 @@
                 <ScalarProperty Name="chassis_no_2" ColumnName="chassis_no_2" />
                 <ScalarProperty Name="grade" ColumnName="grade" />
                 <ScalarProperty Name="ETD" ColumnName="ETD" />
-                <ScalarProperty Name="color" ColumnName="color" />
                 <ScalarProperty Name="KM_ran" ColumnName="KM_ran" />
                 <ScalarProperty Name="gear_at" ColumnName="gear_at" />
                 <ScalarProperty Name="CC" ColumnName="CC" />
