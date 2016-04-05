@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Angnetcommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,19 @@ namespace Angnetcommerce.Controllers
     {
         // MyOrders
         //OrderItem
+        [HttpPost]
+        public bool OrderItem(Product product,string customerId)
+        {
+            var result = false;
+            try
+            {
+                
+            }
+            catch(Exception ex)
+            {
 
+            }
+            return result;
+        }
     }
 }

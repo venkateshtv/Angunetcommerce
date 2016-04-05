@@ -11,7 +11,13 @@
         }
     };
     Init();
-
+    $scope.BuyItem = function () {
+        productService.OrderItem($scope.product,"1").then(function (response) {
+            console.log('Response', response);
+        }, function (error) {
+            console.log('error', error);
+        });
+    };
 
 
 }]);
