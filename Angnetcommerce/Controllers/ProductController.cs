@@ -17,57 +17,132 @@ namespace Angnetcommerce.Controllers
             new Product {Stock_No =2 , Model = "Renault Scala", Currency ="USD",Price = 250000 , Year=2013, Month="Dec"},
             new Product {Stock_No = 3, Model = "Mercedes Benz", Currency ="USD",Price = 250000 , Year=2015, Month="Feb"}
        };
+        
 
         [HttpGet]
         public Product[] GetProducts()
         {
             AaauctionEntities db = new AaauctionEntities();
-            var q = (from product in db.vehicle_for_sale
-                     where product.is_sold == false
-                     join img in db.images_on_vehicles_for_sale
-                     on product.stock_no equals img.stock_no
-                     into imgJoin
-                     from im in imgJoin.DefaultIfEmpty()
-                     join feature in db.features_on_vehicles_for_sale
-                     on product.stock_no equals feature.stock_no
-                     into featJoin
-                     
-                     from fj in featJoin.DefaultIfEmpty()
-                     group new { product, im,fj} by product.stock_no into grp
-                     select new
-                     {
-                        product = grp.FirstOrDefault().product,
-                        images = grp.Where(y=>y.im != null).Select(x=>x.im.imageurl).ToList(),
-                        features = grp.Where(x=>x.fj != null).Select(y=>y.fj.featureid).ToList()
-                     }).ToList();
-
-            var query = (from product in db.vehicle_for_sale
-                        where product.is_sold == false
-                        join mod in db.models on product.model_id equals mod.id
-                        join mk in db.makes on mod.make_id equals mk.makeid
-                        //join img in db.images_on_vehicles_for_sale on product.stock_no equals img.stock_no into images
-                        //from img in images.DefaultIfEmpty()
-                        //join feature in db.features_on_vehicles_for_sale on product.stock_no equals feature.stock_no
-                        //join actualfeature in db.vehicle_features on feature.featureid equals actualfeature.featureid
-
-                        select new Product
-                        {
-
-                            Stock_No = product.stock_no,
-                            CC = product.CC,
-                            chassis_no_1 = product.chassis_no_1,
-                            
-                            //Images = db.images_on_vehicles_for_sale.Where(x=>x.stock_no == product.stock_no).Select(img => img.imageurl).ToArray()
-                            //Images = images.Select(x => x.imageurl).ToArray()
-
-
-                        }).ToList();
-            foreach (var product in query)
+            var productQuery = (from product in db.vehicle_for_sale where product.is_sold == false
+                               join img in db.images_on_vehicles_for_sale on product.stock_no equals img.stock_no
+                               into images
+                               from img in images.DefaultIfEmpty()
+                               join feature in db.features_on_vehicles_for_sale on product.stock_no equals feature.stock_no                              
+                               into featJoin
+                                from fj in featJoin.DefaultIfEmpty()
+                                join ft in db.vehicle_features
+                                on fj.featureid equals ft.featureid
+                                into featureJoin
+                                from f in featureJoin.DefaultIfEmpty()
+                                group new {Product = product, Image = img, Feature = f} by product.stock_no into grp
+                               select grp                              
+                               ).ToList();
+            List<Product> productsFromDB = new List<Product>();
+            foreach (var item in productQuery)
             {
-
+                var productItem = item.FirstOrDefault().Product;
+                var product = new Product();
+                product.Currency = "USD";
+                product.Stock_No = productItem.stock_no;
+                product.Year = productItem.year;
+                product.Month = productItem.month;
+                product.KM_ran = productItem.KM_ran;
+                var model = db.models.Where(x => x.id == productItem.model_id).FirstOrDefault();
+                product.Model = model.model_name;
+                product.Maker = db.makes.Where(x => x.makeid == model.make_id).Select(y => y.make_name).FirstOrDefault();
+                product.Price = productItem.price.HasValue == true ? productItem.price.Value : 0;
+                product.CC = productItem.CC;
+                product.chassis_no_1 = productItem.chassis_no_1;
+                product.Color = productItem.color;
+                product.Fuel = productItem.fuel;
+                product.Gear_m_at = productItem.gear_at.HasValue == true && productItem.gear_at.Value == true ? "A/T" : "Manual";
+                product.Images = item.Where(fI=>fI.Image != null).GroupBy(x => x.Image.imageurl).Select(y => y.Max(z => z.Image.imageurl)).ToArray();
+                var features = item.Where(fI=>fI.Feature!= null).GroupBy(x => x.Feature.feature_name).Select(y => y.Key).ToList();
+                product.Equipments = new Equipment();
+                foreach(var feature in features)
+                {
+                    switch(feature)
+                    {
+                        case "A/C":
+                            product.Equipments.AC = true;
+                            break;
+                        case "PS":
+                            product.Equipments.PS = true;
+                            break;
+                        case "PW":
+                            product.Equipments.PW = true;
+                            break;
+                        case "4WD":
+                            product.Equipments.FourWheelDrive = true;
+                            break;
+                        case "WCAB":
+                            product.Equipments.WCAB = true;
+                            break;
+                    }
+                }
+                productsFromDB.Add(product);
             }
+            //var productQuery = (from product in db.vehicle_for_sale
+            //         where product.is_sold == false
+            //         join img in db.images_on_vehicles_for_sale
+            //         on product.stock_no equals img.stock_no
+            //         into imgJoin
+            //         from im in imgJoin.DefaultIfEmpty()
+            //         join feature in db.features_on_vehicles_for_sale
+            //         on product.stock_no equals feature.stock_no
+            //         into featJoin
+            //         from fj in featJoin.DefaultIfEmpty()
+            //         join ft in db.vehicle_features
+            //         on fj.featureid equals ft.featureid
+            //         into featureJoin
+            //         from f in featureJoin.DefaultIfEmpty()
+            //         group new { Product =  product, Image = im, Feature = f} by product.stock_no into grp
+            //         select grp).ToList();
+           
+            //var prodFeatures = (from product in prodImages
+            //                    join feature in db.features_on_vehicles_for_sale
+            //                    on product.Stock_No equals feature.stock_no
+            //                    into featJoin
+            //                    from fj in featJoin.DefaultIfEmpty()
+            //                    join ft in db.vehicle_features
+            //                    on fj.featureid equals ft.featureid
+            //                    into featureJoin
+            //                    from f in featureJoin.DefaultIfEmpty()
+            //                    group new ProductFeatureGrp { Product = product, Feature = f } by product.Stock_No into grp
+            //                    select SelectProductFeature(grp)).ToList();
+                                //select new Product
+                                //{
+                                //    Stock_No = grp.FirstOrDefault().Product.Stock_No,
+                                //    CC = grp.FirstOrDefault().Product.CC,
+                                //    Images = grp.FirstOrDefault().Product.Images,                                    
+                                //}).ToList();
+            //var query = (from product in db.vehicle_for_sale
+            //            where product.is_sold == false
+            //            join mod in db.models on product.model_id equals mod.id
+            //            join mk in db.makes on mod.make_id equals mk.makeid
+            //            //join img in db.images_on_vehicles_for_sale on product.stock_no equals img.stock_no into images
+            //            //from img in images.DefaultIfEmpty()
+            //            //join feature in db.features_on_vehicles_for_sale on product.stock_no equals feature.stock_no
+            //            //join actualfeature in db.vehicle_features on feature.featureid equals actualfeature.featureid
+
+            //            select new Product
+            //            {
+
+            //                Stock_No = product.stock_no,
+            //                CC = product.CC,
+            //                chassis_no_1 = product.chassis_no_1,
+                            
+            //                //Images = db.images_on_vehicles_for_sale.Where(x=>x.stock_no == product.stock_no).Select(img => img.imageurl).ToArray()
+            //                //Images = images.Select(x => x.imageurl).ToArray()
+
+
+            //            }).ToList();
+            //foreach (var product in query)
+            //{
+
+            //}
             ////Images = db.images_on_vehicles_for_sale.Where(x=>x.stock_no == product.stock_no).Select(y=>y.imageurl).ToArray()
-            return products;
+            return productsFromDB.ToArray();
         }
         // Product Filters
 

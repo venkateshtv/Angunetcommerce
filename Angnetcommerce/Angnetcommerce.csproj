@@ -939,6 +939,8 @@
     </Compile>
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductFeatureGrp.cs" />
+    <Compile Include="Models\ProductImageGrp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vehicle_category.cs">
       <DependentUpon>AAAuction.tt</DependentUpon>
