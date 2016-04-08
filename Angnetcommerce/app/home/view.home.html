@@ -1,36 +1,33 @@
-﻿<section id="carsgrid" class="clearfix">
-    <input type="file" id="file1" name="file" multiple
+﻿<section id="carsgrid" class="clearfix" style="padding-top: 5px;">
+    <!--<input type="file" id="file1" name="file" multiple
            ng-files="getTheFiles($files)" />
-    <input type="button" ng-click="uploadFiles()" value="Upload" />
+    <input type="button" ng-click="uploadFiles()" value="Upload" />-->
+    
+    <div ng-repeat="product in products track by $index" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gap-btm">
+        <a href="#/productdetail/{{product.Stock_No}}">
+            <div class="thumbnail" >
+                <div class="blog-image">
+                    <div class="date">
+                        <ul class="list-unstyled">
+                            <li>
+                                {{product.Currency}} {{product.Price}}
+                            </li>
+                            <li>
+                                {{product.Year}} {{product.Month}}
+                            </li>                            
+                        </ul>
+                    </div>
 
-    <div ng-repeat="product in products" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gap-btm">
-        <div  class="thumbnail">
-            <div class="blog-image">
-                <div class="date">
-                    <ul class="list-unstyled">
-                        <li>
-                            {{product.Currency}} {{product.Price}}
-                        </li>
-                        <li>
-                            {{product.Year}} {{product.Month}}
-                        </li>
-                    </ul>
-                </div>
-                <a href="#/productdetail/{{product.Stock_No}}">
-                    <img src="images/blog1.png" class="img-responsive" alt="...">
-                </a>
-                
-                <div class="down-arrow">
+                    <div style="height:230px;overflow:hidden" >
+                        <img ng-src="images/portfolio/{{product.Images.length > 0 ? product.Images[0] : 'rw1.png'}}" class="img-responsive">
+                    </div>
+                    <div class="text-center">
+                        <h4>
+                            {{product.Model}}
+                        </h4>
+                    </div>
                 </div>
             </div>
-            <div class="caption">
-                <h3>
-                    {{product.Model}}
-                </h3>
-                <!--<p>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                </p>-->
-            </div>
-        </div>
+        </a>
     </div>
 </section>

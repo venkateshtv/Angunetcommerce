@@ -1,4 +1,4 @@
-﻿var app = angular.module('angnetcommerceapp', ['ui.router']);
+﻿var app = angular.module('angnetcommerceapp', ['ui.router', 'angular-flexslider']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

@@ -83,6 +83,10 @@
     <!--Carosuel Slider-->
     <link rel="stylesheet" type="text/css" href="css/pageviews/carousel-slider.css">
     <!--End of Page View Css Load for Individual page-->
+    <!--Flexi slider plugin-->    
+    <link rel="stylesheet" type="text/css" href="css/pageviews/flexslider.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <!--End Flexi slider plugin-->
 </head>
 <body>
 <!--header-top-->
@@ -310,7 +314,7 @@
 </div>
 <!-- Slider rev. -->
 <!-- We Work Section -->
- <ui-view></ui-view>
+ <ui-view autoscroll="true"></ui-view>
 
 <!-- /Body Sections -->
 <!-- Footer -->
@@ -504,5 +508,10 @@ ga('send','pageview');
     <script src="app/productdetail/controller.productdetail.js"></script>
     <script src="app/products/service.products.js"></script>
     <script src="app/products/controller.products.js"></script>
+    <!--Flexi slider plugin-->
+    jquery.flexslider-min.js
+    <script src="js/plugins/jquery.flexslider-min.js"></script>
+    <script src="app/plugins/directive.flexislider.js"></script>
+    <!--End Flexi slider plugin-->
 </body>
 </html>

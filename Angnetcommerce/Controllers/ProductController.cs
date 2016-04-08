@@ -24,6 +24,12 @@ namespace Angnetcommerce.Controllers
         {
             AaauctionEntities db = new AaauctionEntities();
             var productQuery = (from product in db.vehicle_for_sale where product.is_sold == false
+                                join model in db.models on product.model_id equals model.id
+                                into models
+                                from mod in models.DefaultIfEmpty()
+                                join make in db.makes on mod.make_id equals make.makeid
+                                into makes
+                                from mak in makes.DefaultIfEmpty()
                                join img in db.images_on_vehicles_for_sale on product.stock_no equals img.stock_no
                                into images
                                from img in images.DefaultIfEmpty()
@@ -34,10 +40,12 @@ namespace Angnetcommerce.Controllers
                                 on fj.featureid equals ft.featureid
                                 into featureJoin
                                 from f in featureJoin.DefaultIfEmpty()
-                                group new {Product = product, Image = img, Feature = f} by product.stock_no into grp
+                                group new {Product = product, model = mod,make = mak, Image = img, Feature = f} by product.stock_no into grp
+
                                select grp                              
                                ).ToList();
             List<Product> productsFromDB = new List<Product>();
+            
             foreach (var item in productQuery)
             {
                 var productItem = item.FirstOrDefault().Product;
@@ -47,16 +55,16 @@ namespace Angnetcommerce.Controllers
                 product.Year = productItem.year;
                 product.Month = productItem.month;
                 product.KM_ran = productItem.KM_ran;
-                var model = db.models.Where(x => x.id == productItem.model_id).FirstOrDefault();
-                product.Model = model.model_name;
-                product.Maker = db.makes.Where(x => x.makeid == model.make_id).Select(y => y.make_name).FirstOrDefault();
+                //var model = db.models.Where(x => x.id == productItem.model_id).FirstOrDefault();
+                product.Model = item.FirstOrDefault().model.model_name;// model.model_name;
+                product.Maker = item.FirstOrDefault().make.make_name;//db.makes.Where(x => x.makeid == model.make_id).Select(y => y.make_name).FirstOrDefault();
                 product.Price = productItem.price.HasValue == true ? productItem.price.Value : 0;
                 product.CC = productItem.CC;
                 product.chassis_no_1 = productItem.chassis_no_1;
                 product.Color = productItem.color;
                 product.Fuel = productItem.fuel;
                 product.Gear_m_at = productItem.gear_at.HasValue == true && productItem.gear_at.Value == true ? "A/T" : "Manual";
-                product.Images = item.Where(fI=>fI.Image != null).GroupBy(x => x.Image.imageurl).Select(y => y.Max(z => z.Image.imageurl)).ToArray();
+                product.Images = item.Where(fI=>fI.Image != null).OrderBy(o=>o.Image.imageid).GroupBy(x => x.Image.imageurl).Select(y => y.Max(z => z.Image.imageurl)).ToArray();
                 var features = item.Where(fI=>fI.Feature!= null).GroupBy(x => x.Feature.feature_name).Select(y => y.Key).ToList();
                 product.Equipments = new Equipment();
                 foreach(var feature in features)

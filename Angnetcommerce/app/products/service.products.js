@@ -5,8 +5,8 @@
         var deferred = $q.defer();
         $http({
             method: 'POST',
-            url: '/api/Order/OrderItem',
-            data:{product:selectedProduct, customerId:customerid}
+            url: '/new/api/Order/OrderItem',
+            data: { stockno: selectedProduct.Stock_No, price: selectedProduct.Price, customerId: customerid }
         }).then(function (response) {
             deferred.resolve(response);
         }, function (error) {
@@ -17,9 +17,12 @@
     };
     result.GetProducts = function () {
         var deferred = $q.defer();
+        if (products != null) {
+            deferred.resolve(products);
+        }
         $http({
             method: 'GET',
-            url: '/api/Product/GetProducts'
+            url: '/new/api/Product/GetProducts'
         }).then(function (response) {
             products = response.data;
             deferred.resolve(products);

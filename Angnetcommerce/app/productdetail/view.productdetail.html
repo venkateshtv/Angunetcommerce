@@ -9,7 +9,7 @@
 </section>-->
 <!-- /This is page title -->
 <!-- /Body Sections -->
-<section id="portfolio-details" class="clearfix">
+<section id="portfolio-details">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -18,7 +18,7 @@
                         <span class="preset-color">
                             {{product.Model}}
                         </span>
-
+                        <i class="fa fa-calendar"></i> {{product.Year}} {{product.Month}}
                     </h4>
                     <div class="portfolio-info">
                         <div class="row">
@@ -125,141 +125,156 @@
 
                     </table>
                 </div>
+                <h4>Accessories:</h4>
+
+
+                <ul class="list list-skills icons list-unstyled list-inline">
+                    <li><i ng-class="product.Equipments.AC == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> A/C</li>
+                    <li><i ng-class="product.Equipments.PS == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> PS</li>
+                    <li><i ng-class="product.Equipments.PW == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> PW</li>
+                    <li><i ng-class="product.Equipments.FourWheelDrive == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> 4WD</li>
+                    <li><i ng-class="product.Equipments.WCAB == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> WCAB</li>
+
+                </ul>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators portfolio-carosel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-                        </li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1">
-                        </li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2">
-                        </li>
-                        <li data-target="#carousel-example-generic" data-slide-to="3">
-                        </li>
-                    </ol>
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner portfolio-carosel-inner">
-                        <div class="item active">
-                            <div class="project-image">
-                                <img src="images/portfolio/portfoplio-project1.jpg" class="img-responsive" alt="clients">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-image">
-                                <img src="images/portfolio/portfoplio-project2.jpg" class="img-responsive" alt="clients">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-image">
-                                <img src="images/portfolio/portfoplio-project3.jpg" class="img-responsive" alt="clients">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-image">
-                                <img src="images/portfolio/portfoplio-project4.jpg" class="img-responsive" alt="clients">
-                            </div>
-                        </div>
+                <div id="container">
+                    <div class="col-sm-12">
+                        <flex-slider slider-id="slider" flex-slide="image in product.Images track by $index" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
+                            <li>
+                                <img ng-src="images/portfolio/{{image}}">
+                            </li>
+                        </flex-slider>
                     </div>
+                    <div class="col-sm-12">
+                        <flex-slider slider-id="carousel" flex-slide="image in product.Images track by $index" animation="slide" animation-loop="false" item-width="210" item-margin="5" as-nav-for="#slider" slideshow="false" control-nav="false">
+                            <li>
+                                <img ng-src="images/portfolio/{{image}}">
+                            </li>
+                        </flex-slider>
+                    </div>
+
                 </div>
+
+                
             </div>
             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-               {{product.Currency}} {{product.Price}}
-                <button class="btn btn-primary btn-live" ng-click="BuyItem()"><i class="fa fa-external-link"></i>Buy Now</button><span class="arrow hlb" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
-            </div>
-        </div>
-    </div>
-</section>
-<!--/#portfolio-details-->
-<!-- Recent work -->
-<section class="recent-work-head">
-    <div class="container">
-        <div class="row">
-            <h1>
-                Similar cars <span>
+                <!--<ul class="price-table list-unstyled text-center">
+                    <li>
+                        <div class="price">
+                            <p>
+                                <h4></h4>
+                                <span class="curancy">
+                                    {{product.Currency}}
+                                </span>
+                                {{product.Price}}
+                            </p>
+                            <small>
+                                Month
+                            </small>
+                        </div>
+                    </li>
+                </ul>-->
+                    <h4>{{product.Currency}} {{product.Price}}</h4>
+                    <button class="btn btn-primary btn-live" ng-click="BuyItem()"><i class="fa fa-external-link"></i>Buy Now</button>
+                    <span class="arrow hlb" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
                     
-                </span>
-            </h1>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry
-            </p>
+</div>
         </div>
     </div>
 </section>
+<section class="clearfix">
+   
+    </section>
+    <!--/#portfolio-details-->
+    <!-- Recent work -->
+    <!--<section class="recent-work-head">
+        <div class="container">
+            <div class="row">
+                <h1>
+                    Similar cars <span>
 
-<section class="recent-work-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
-                <div class="recent-work-item">
-                    <img src="images/rw1.png" class="img-responsive work-item" alt="Responsive image">
-                    <div class="recent-work-item-hover">
-                        <div class="recent-work-project-title">
-                            <h1>
-                                Project title
-                            </h1>
-                            <button class="btn btn-default">
-                                Web design
-                            </button>
+                    </span>
+                </h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="recent-work-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
+                    <div class="recent-work-item">
+                        <img src="images/rw1.png" class="img-responsive work-item" alt="Responsive image">
+                        <div class="recent-work-item-hover">
+                            <div class="recent-work-project-title">
+                                <h1>
+                                    Project title
+                                </h1>
+                                <button class="btn btn-default">
+                                    Web design
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="recent-work-item-hover-btn">
-                        <a href="#">
-                            <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
-                        </a>
-                        <a href="images/rw1.png" rel="prettyPhoto[gal4]">
-                            <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
-                        </a>
+                        <div class="recent-work-item-hover-btn">
+                            <a href="#">
+                                <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
+                            </a>
+                            <a href="images/rw1.png" rel="prettyPhoto[gal4]">
+                                <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
-                <div class="recent-work-item">
-                    <img src="images/rw2.png" class="img-responsive work-item" alt="Responsive image">
-                    <div class="recent-work-item-hover">
-                        <div class="recent-work-project-title">
-                            <h1>
-                                Project title
-                            </h1>
-                            <button class="btn btn-default">
-                                Web design
-                            </button>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
+                    <div class="recent-work-item">
+                        <img src="images/rw2.png" class="img-responsive work-item" alt="Responsive image">
+                        <div class="recent-work-item-hover">
+                            <div class="recent-work-project-title">
+                                <h1>
+                                    Project title
+                                </h1>
+                                <button class="btn btn-default">
+                                    Web design
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="recent-work-item-hover-btn">
-                        <a href="#">
-                            <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
-                        </a>
-                        <a href="images/rw2.png" rel="prettyPhoto[gal4]">
-                            <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
-                        </a>
+                        <div class="recent-work-item-hover-btn">
+                            <a href="#">
+                                <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
+                            </a>
+                            <a href="images/rw2.png" rel="prettyPhoto[gal4]">
+                                <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
-                <div class="recent-work-item">
-                    <img src="images/rw3.png" class="img-responsive work-item" alt="Responsive image">
-                    <div class="recent-work-item-hover">
-                        <div class="recent-work-project-title">
-                            <h1>
-                                Project title
-                            </h1>
-                            <button class="btn btn-default">
-                                Web design
-                            </button>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 recent-work-item-main">
+                    <div class="recent-work-item">
+                        <img src="images/rw3.png" class="img-responsive work-item" alt="Responsive image">
+                        <div class="recent-work-item-hover">
+                            <div class="recent-work-project-title">
+                                <h1>
+                                    Project title
+                                </h1>
+                                <button class="btn btn-default">
+                                    Web design
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="recent-work-item-hover-btn">
-                        <a href="#">
-                            <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
-                        </a>
-                        <a href="images/rw3.png" rel="prettyPhoto[gal4]">
-                            <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
-                        </a>
+                        <div class="recent-work-item-hover-btn">
+                            <a href="#">
+                                <img src="images/iconimg2.png" class="img-responsive iconimg" alt="Responsive image">
+                            </a>
+                            <a href="images/rw3.png" rel="prettyPhoto[gal4]">
+                                <img src="images/iconimg1.png" class="img-responsive iconimg" alt="Responsive image">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>-->

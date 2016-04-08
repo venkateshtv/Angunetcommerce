@@ -116,6 +116,7 @@
     <Content Include="app\auth\view.signup.html" />
     <Content Include="app\home\controller.home.js" />
     <Content Include="app\home\view.home.html" />
+    <Content Include="app\plugins\directive.flexislider.js" />
     <Content Include="app\productdetail\controller.productdetail.js" />
     <Content Include="app\productdetail\view.productdetail.html" />
     <Content Include="app\products\controller.products.js" />
@@ -938,6 +939,7 @@
       <DependentUpon>AAAuction.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipment.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductFeatureGrp.cs" />
     <Compile Include="Models\ProductImageGrp.cs" />
@@ -977,6 +979,7 @@
     <Content Include="AAAuction.edmx.diagram">
       <DependentUpon>AAAuction.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Angunetcommerce.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
