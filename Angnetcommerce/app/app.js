@@ -1,4 +1,4 @@
-﻿var app = angular.module('angnetcommerceapp', ['ui.router', 'angular-flexslider']);
+﻿var app = angular.module('angnetcommerceapp', ['ui.router', 'angular-flexslider', 'ngLoadingSpinner']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -30,12 +30,12 @@ app.run(function ($rootScope) {
     // you can inject any instance here
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         // do something
-        if (toState.name == "home") {
-            $('#banner').show();
-        }
-        else {
-            $('#banner').hide();
-        }
+        //if (toState.name == "home") {
+        //    $('#banner').show();
+        //}
+        //else {
+        //    $('#banner').hide();
+        //}
     });
 });
 
