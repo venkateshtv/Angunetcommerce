@@ -2,32 +2,104 @@
     <!--<input type="file" id="file1" name="file" multiple
            ng-files="getTheFiles($files)" />
     <input type="button" ng-click="uploadFiles()" value="Upload" />-->
-    
-    <div ng-repeat="product in products track by $index" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gap-btm">
-        <a href="#/productdetail/{{product.Stock_No}}">
-            <div class="thumbnail" >
-                <div class="blog-image">
-                    <div class="date">
+    <h3 id="grid-options">              Stock List</h3>
+    <div class="table-responsive">
+        <table class="table-striped table-hover table-condensed table-responsive table-bordered products-table">
+            <thead>
+                <tr>
+                    <th>
+                        Photo
+                    </th>
+                    <th>
+                        Car details
+                    </th>
+                    <th>
+                        Engine details
+                    </th>
+                    <th>
+                        Price
+                    </th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in products track by $index">
+                    <td class="products-table-img">
+                        <a href="#/productdetail/{{product.Stock_No}}" style="color:blue">
+                            <img class="img-thumbnail" ng-src="images/portfolio/{{product.Images.length > 0 ? product.Images[0] : 'rw1.png'}}">
+                         </a>
+                    </td>
+                    <td>
                         <ul class="list-unstyled">
                             <li>
-                                {{product.Currency}} {{product.Price}}
+                                <a href="#/productdetail/{{product.Stock_No}}" class="product-anchor">{{product.Maker}} {{product.Model}}</a>
                             </li>
                             <li>
                                 {{product.Year}} {{product.Month}}
-                            </li>                            
+                            </li>
+                            <li>
+                                {{product.chassis_no_1}}
+                            </li>
+                            <li>
+                                {{product.chassis_no_2}}
+                            </li>
                         </ul>
-                    </div>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li>{{product.CC}}</li>
+                            <li>{{product.Gear_m_at}}</li>
+                            <li>{{product.KM_ran}}</li>
+                        </ul>
+                    </td>
+                    <td align="center">
+                        <ul class="list-unstyled">
+                            <li>{{product.Currency}} {{product.Price}}</li>
+                            <li><button type ="button" class="btn btn-primary">Inquiry</button></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+            <!--<div ng-repeat="product in products track by $index" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gap-btm">
+                <a href="#/productdetail/{{product.Stock_No}}">
+                    <div class="thumbnail">
+                        <div class="blog-image">
+                            <div class="date">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        {{product.Currency}} {{product.Price}}
+                                    </li>
+                                    <li>
+                                        {{product.Year}} {{product.Month}}
+                                    </li>
+                                </ul>
+                            </div>
 
-                    <div style="height:230px;overflow:hidden" >
-                        <img ng-src="images/portfolio/{{product.Images.length > 0 ? product.Images[0] : 'rw1.png'}}" class="img-responsive">
+                            <div style="height:230px;overflow:hidden">
+                                <img ng-src="images/portfolio/{{product.Images.length > 0 ? product.Images[0] : 'rw1.png'}}" class="img-responsive">
+                            </div>
+                            <div class="text-center">
+                                <h4>
+                                    {{product.Model}}
+                                </h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <h4>
-                            {{product.Model}}
-                        </h4>
-                    </div>
-                </div>
+                </a>
+            </div>-->
+</section>
+<section id="pagination">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <ul class="pagination blog-page-bottom-layout">
+                    <li><a ng-if="showPrevious" ui-sref="home({page:currentPage-1})">Prev</a></li>
+                    <li ng-repeat="pageIndex in pageCount track by $index"><a ui-sref="home({page:$index+1})" >{{$index + 1}}</a></li>
+                    <li><a ng-if="showNext" ui-sref="home({page:currentPage+1})">Next</a></li>
+                </ul>
             </div>
-        </a>
+        </div>
     </div>
 </section>
+<!--ng-click="loadProducts($index)"-->

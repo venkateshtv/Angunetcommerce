@@ -1,5 +1,6 @@
-﻿app.service('productService', ['$http','$q', function ($http,$q) {
+﻿app.service('productService', ['$http', '$q', 'homePageSize', function ($http, $q, homePageSize) {
     var result = {};
+    var productsCount = 0;
     var products = null;//[{ 'name': 'Honda City', 'price': '250,000' }, { 'name': 'Renault Scala', 'price': '250,000' }, { 'name': 'Nissan Sunny', 'price': '250,000' }, { 'name': 'Honda Jazz', 'price': '250,000' }];
     result.OrderItem = function (selectedProduct,customerid) {
         var deferred = $q.defer();
@@ -15,16 +16,17 @@
 
         return deferred.promise;
     };
-    result.GetProducts = function () {
+    result.GetProducts = function (pageIndex,fetchAgain) {
         var deferred = $q.defer();
-        if (products != null) {
+        if (products != null && fetchAgain == undefined) {
             deferred.resolve(products);
         }
         $http({
             method: 'GET',
-            url: '/new/api/Product/GetProducts'
+            url: '/new/api/Product/GetProducts?pageIndex='+pageIndex+'&pageSize='+homePageSize+''
         }).then(function (response) {
-            products = response.data;
+            products = response.data.products;
+            productsCount = response.data.count;
             deferred.resolve(products);
         }, function (error) {
             deferred.reject(error);
@@ -42,6 +44,9 @@
             }
         }
         return product;
+    };
+    result.GetProductPages = function () {
+        return Math.ceil(productsCount / homePageSize);
     };
     return result;
 

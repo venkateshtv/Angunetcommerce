@@ -3,7 +3,7 @@
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('home', {
-        url: '/home',
+        url: '/home?page',
         templateUrl: 'app/home/view.home.html',
         controller:'HomeCtrl'
     })
@@ -51,4 +51,6 @@ app.directive('ngFiles', ['$parse', function ($parse) {
     return {
         link: fn_link
     }
-} ])
+}]);
+
+app.constant("homePageSize", 10);

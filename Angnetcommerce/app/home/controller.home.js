@@ -1,12 +1,25 @@
-﻿app.controller('HomeCtrl', ['$scope','productService','$http', function ($scope,productService,$http) {
+﻿app.controller('HomeCtrl', ['$scope','productService','$http', '$stateParams',function ($scope,productService,$http,$stateParams) {
     $scope.products = [];
-    function Init() {
-        productService.GetProducts().then(function (response) {
+    $scope.pageCount = [];
+    $scope.currentPage = 0;
+    $scope.showNext = false;
+    $scope.showPrevious = false;
+    var updatePagination = function () {
+        $scope.showNext = $scope.currentPage != $scope.pageCount.length;
+        $scope.showPrevious = $scope.currentPage != 1;
+    };
+    $scope.loadProducts = function (pageIndex) {
+        productService.GetProducts(pageIndex,true).then(function (response) {
             $scope.products = response;
-            console.log('Response', response);
+            $scope.pageCount = new Array(productService.GetProductPages());
+            updatePagination();
         }, function (error) {
             console.log('error', error);
         });
+    };
+    function Init() {
+        $scope.currentPage = $stateParams.page === undefined || $stateParams.page == null ? 1 : parseInt($stateParams.page);
+        $scope.loadProducts($scope.currentPage-1);
     };
     Init();
     var formdata = new FormData();
