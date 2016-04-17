@@ -9,3 +9,23 @@ cursor: pointer;
 opacity: 1;
 cursor: default;
 }
+
+.products-table {
+    width: 80%;
+    table-layout: fixed;
+}
+.products-table th:first-child td:first-child {
+    width: 100px;
+    overflow: hidden;
+}
+.products-table td {
+    vertical-align: middle;
+}
+.products-table-img img {
+    height: 98px;
+    width: 130px;
+}
+
+#product-anchor a{
+	color:blue;
+}
