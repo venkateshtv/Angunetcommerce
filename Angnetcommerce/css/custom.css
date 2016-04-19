@@ -29,3 +29,7 @@ cursor: default;
 #product-anchor a{
 	color:blue;
 }
+.product-detail-img{
+	height:200px;
+	width:150px;
+}

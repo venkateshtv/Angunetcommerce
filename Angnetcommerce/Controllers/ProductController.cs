@@ -69,6 +69,7 @@ namespace Angnetcommerce.Controllers
                     product.Color = productItem.color;
                     product.Fuel = productItem.fuel;
                     product.Gear_m_at = productItem.gear_at.HasValue == true && productItem.gear_at.Value == true ? "A/T" : "Manual";
+                    product.LastModifiedDate = productItem.last_modified_date.HasValue == true ? productItem.last_modified_date.Value.ToShortDateString() : "";
                     product.Images = item.Where(fI => fI.Image != null).OrderBy(o => o.Image.imageid).GroupBy(x => x.Image.imageurl).Select(y => y.Max(z => z.Image.imageurl)).ToArray();
                     var features = item.Where(fI => fI.Feature != null).GroupBy(x => x.Feature.feature_name).Select(y => y.Key).ToList();
                     product.Equipments = new Equipment();

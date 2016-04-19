@@ -117,6 +117,7 @@
     <Content Include="app\home\controller.home.js" />
     <Content Include="app\home\view.home.html" />
     <Content Include="app\plugins\directive.flexislider.js" />
+    <Content Include="app\plugins\directive.ngElevateZoom.js" />
     <Content Include="app\plugins\module.angularSpinner.js" />
     <Content Include="app\plugins\module.ngLoadingSpinner.js" />
     <Content Include="app\productdetail\controller.productdetail.js" />

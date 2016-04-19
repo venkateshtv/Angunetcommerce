@@ -26,6 +26,7 @@ namespace Angnetcommerce.Models
         public int? CC { get; set; }
         public string[] Images { get; set; }
         public int? NoOfDoors { get; set; }
+        public string LastModifiedDate { get; set; }
         private Equipment _Equipments = new Equipment();
         public Equipment Equipments
         {

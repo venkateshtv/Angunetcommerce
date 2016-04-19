@@ -9,36 +9,21 @@
 </section>-->
 <!-- /This is page title -->
 <!-- /Body Sections -->
+
 <section id="portfolio-details">
     <div class="container">
+        <div class="row" style="margin-left:0%">
+            <div  class="project-head-title">
+                <h3>
+                    <span class="preset-color">
+                        {{product.Maker}} {{product.Model}} {{product.Year}} {{product.Month}} {{product.Grade}}
+                    </span>
+                </h3>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <div class="project-head-title">
-                    <h4>
-                        <span class="preset-color">
-                            {{product.Model}}
-                        </span>
-                        <i class="fa fa-calendar"></i> {{product.Year}} {{product.Month}}
-                    </h4>
-                    <div class="portfolio-info">
-                        <div class="row">
-                            <div class="col-md-12 center">
-                                <ul>
-                                    <!--<li>
-                                        <a href="#" rel="tooltip" data-original-title="Like"><i class="fa fa-heart"></i>14</a>
-                                    </li>-->
-                                    <li>
-                                        <i class="fa fa-calendar"></i> {{product.Year}} {{product.Month}}
-                                    </li>
-                                    <!--<li>
-                                        <i class="fa fa-tags"></i><a href="#">Brand</a>, <a href="#">Design</a>
-                                    </li>-->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+               
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
@@ -121,6 +106,14 @@
                                 {{product.Type}}
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                Last Updated
+                            </th>
+                            <td>
+                                {{product.LastModifiedDate}}
+                            </td>
+                        </tr>
 
 
                     </table>
@@ -128,7 +121,7 @@
                 <h4>Accessories:</h4>
 
 
-                <ul class="list list-skills icons list-unstyled list-inline">
+                <ul class="list list-skills icons list-unstyled">
                     <li><i ng-class="product.Equipments.AC == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> A/C</li>
                     <li><i ng-class="product.Equipments.PS == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> PS</li>
                     <li><i ng-class="product.Equipments.PW == true ? 'fa fa-check-circle' : 'fa fa-minus-circle'"></i> PW</li>
@@ -137,54 +130,49 @@
 
                 </ul>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                 <div id="container">
                     <div class="col-sm-12">
                         <flex-slider slider-id="slider" flex-slide="image in product.Images track by $index" animation="fade" animation-loop="false" sync="#carousel" slideshow="false" control-nav="false" init-delay="100">
                             <li>
-                                <img ng-src="images/portfolio/{{image}}">
-                            </li>
-                        </flex-slider>
-                   
-                        <flex-slider slider-id="carousel" flex-slide="image in product.Images track by $index" animation="slide" animation-loop="false" item-width="210" item-margin="5" as-nav-for="#slider" slideshow="false" control-nav="false">
-                            <li>
-                                <img ng-src="images/portfolio/{{image}}">
+                                <img name="product-detail-img" class="product-detail-img" ng-elevate-zoom
+                                     ng-src="images/portfolio/{{image}}"
+                                     zoom-image="images/portfolio/{{image}}">
+
                             </li>
                         </flex-slider>
                     </div>
+                    <div class="row">
+                        
 
-                </div>
+                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+                            <div class="fliker-photo">
+                                <a ng-repeat="image in product.Images track by $index">
+                                    <img ng-elevate-zoom
+                                         ng-src="images/portfolio/{{image}}"
+                                         zoom-image="images/portfolio/{{image}}">
+                                </a>
 
-                
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                <!--<ul class="price-table list-unstyled text-center">
-                    <li>
-                        <div class="price">
-                            <p>
-                                <h4></h4>
-                                <span class="curancy">
-                                    {{product.Currency}}
-                                </span>
-                                {{product.Price}}
-                            </p>
-                            <small>
-                                Month
-                            </small>
+                            </div>
                         </div>
-                    </li>
-                </ul>-->
-                    <h4>{{product.Currency}} {{product.Price}}</h4>
-                    <button class="btn btn-primary btn-live" ng-click="BuyItem()"><i class="fa fa-external-link"></i>Buy Now</button>
-                    <span class="arrow hlb" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
-                    
-</div>
-        </div>
-    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="container">
+                            <ul class="list-unstyled">
+                                <li><button class="btn btn-primary btn-live"><i class="fa fa-external-link"></i>FOB JAPAN</button></li>
+                                <li><h4>{{product.Currency}} {{product.Price}}</h4></li>
+                                <li><button class="btn btn-primary btn-live" ng-click="BuyItem()"><i class="fa fa-external-link"></i>BUY THIS CAR</button></li>
+                                <li><button class="btn btn-primary btn-live"><i class="fa fa-external-link"></i>INQUIRY</button></li>
+                                <li><span class="arrow hlb" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </section>
-<section class="clearfix">
-   
-    </section>
+
     <!--/#portfolio-details-->
     <!-- Recent work -->
     <!--<section class="recent-work-head">

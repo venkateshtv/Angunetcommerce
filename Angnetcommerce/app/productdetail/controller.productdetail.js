@@ -2,11 +2,13 @@
     $scope.product = null;
     function Init() {
         if ($stateParams.Stock_No == undefined) {
+            $state.go("home");
             return;
         }
 
         $scope.product = productService.GetProduct($stateParams.Stock_No);
         if ($scope.product == null) {
+            $state.go("home");
             return;
         }
     };
